@@ -1,6 +1,12 @@
 #include <stdio.h>
 
-void main(void)
+// Function prototypes
+void math(void);
+void if_Test(void);
+void while_Test(void);
+void do_while_test(void);
+
+int main(void)
 {
 	/*Print Statment
 	printf("Hello World");
@@ -9,16 +15,19 @@ void main(void)
 	while_Test();
 	*/
 	do_while_test();
+	
+	return 0;
 }
+
 void math(void)
 {
 	float a;
 	int b = 3;
-	int c;
+	float c;  // Changed to float to match calculation result
 
 	a = 2;
 	c = a + b;
-	printf("The sum of adding %f and %d is %d\n", a, b, c);
+	printf("The sum of adding %f and %d is %f\n", a, b, c);  // Fixed format specifier
 }
 
 void if_Test(void)
@@ -44,7 +53,7 @@ void while_Test(void)
 	while (a < 5)
 	{
 		/* code */
-		printf("a is equl to %d\n", a);
+		printf("a is equal to %d\n", a);  // Fixed spelling of "equal"
 		a++;
 	}
 	printf("a is equal to %d and I've finished\n", a);
