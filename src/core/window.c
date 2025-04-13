@@ -14,6 +14,13 @@
 #include <unistd.h>
 #endif
 
+// Platform-specific string duplication
+#ifdef _WIN32
+#define PLATFORM_STRDUP _strdup
+#else
+#define PLATFORM_STRDUP strdup
+#endif
+
 /**
  * @brief Window structure implementation
  */
@@ -53,9 +60,9 @@ Window* window_create(const WindowConfig* config) {
     window->should_close = false;
     
     if (config->title) {
-        window->title = strdup(config->title);
+        window->title = PLATFORM_STRDUP(config->title);
     } else {
-        window->title = strdup("UI Framework Window");
+        window->title = PLATFORM_STRDUP("UI Framework Window");
     }
     
     /* Allocate framebuffer */

@@ -9,6 +9,13 @@
 #include <string.h>
 #include <stdio.h>
 
+// Platform-specific string duplication
+#ifdef _WIN32
+#define PLATFORM_STRDUP _strdup
+#else
+#define PLATFORM_STRDUP strdup
+#endif
+
 /**
  * @brief Button data structure
  */
@@ -106,7 +113,7 @@ Widget* button_create(int x, int y, int width, int height, const char* text) {
     
     // Copy button text
     if (text) {
-        data->text = strdup(text);
+        data->text = PLATFORM_STRDUP(text);
         if (!data->text) {
             free(data);
             return NULL;
@@ -140,7 +147,7 @@ void button_set_text(Widget* button, const char* text) {
     }
     
     // Copy new text
-    data->text = strdup(text);
+    data->text = PLATFORM_STRDUP(text);
 }
 
 const char* button_get_text(const Widget* button) {
